@@ -1641,17 +1641,62 @@ h1 {
   .list-actions button {
     flex: 1 1 9rem;
   }
+
+  .manage-admins-list-heading {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.75rem;
+    margin-block-end: 1.25rem;
+  }
+
+  .manage-admins-list-heading .list-actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5rem;
+  }
+
+  .manage-admins-list-heading .secondary-button,
+  .manage-admins-list-heading .primary-button {
+    flex: none;
+    inline-size: 100%;
+    justify-content: center;
+    min-inline-size: 0;
+  }
 }
 
 /* ── Responsive: mobile ─────────────────────────────────────── */
 @media (max-width: 44em) {
   .manage-admins-page {
-    padding-inline: 1rem;
+    padding-inline: 0.75rem;
+  }
+
+  .manage-admins-heading {
+    margin-block-end: 1rem;
+    padding-block-end: 0.625rem;
+  }
+
+  .manage-admins-heading h1 {
+    font-size: 1.375rem;
   }
 
   .manage-admins-list-heading {
     flex-direction: column;
     align-items: stretch;
+    gap: 0.75rem;
+    margin-block-end: 1rem;
+  }
+
+  .manage-admins-list-heading .list-actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5rem;
+  }
+
+  .manage-admins-list-heading .secondary-button,
+  .manage-admins-list-heading .primary-button {
+    inline-size: 100%;
+    justify-content: center;
+    min-inline-size: 0;
   }
 
   .summary-cards {
@@ -1685,10 +1730,58 @@ h1 {
     inline-size: 100%;
   }
 
+  .manage-admins-page .date-label input {
+    inline-size: 100%;
+  }
+
+  .manage-admins-page .filters select {
+    inline-size: 100%;
+    min-inline-size: 0;
+  }
+
+  .manage-admins-page > .filters {
+    padding: 0.75rem 0.875rem;
+  }
+
+  .manage-admins-page .filter-controls {
+    margin-inline-start: 0;
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .manage-admins-page .date-label {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .manage-admins-page .date-input-wrap {
+    flex: 1;
+    min-inline-size: 0;
+    max-inline-size: calc(100% - 3.5rem);
+  }
+
+  .manage-admins-page .select-wrap {
+    inline-size: 100%;
+  }
+
+  .manage-admins-page .select-wrap select {
+    inline-size: 100%;
+    min-inline-size: 0;
+  }
+
   .table-card {
     border-radius: 0;
     border-inline: 0;
     overflow: visible;
+    background: transparent;
+    box-shadow: none;
+  }
+
+  .manage-admins-table-card {
+    padding: 0;
+    border: 0;
+    border-radius: 0;
     background: transparent;
     box-shadow: none;
   }
@@ -1699,31 +1792,73 @@ h1 {
     min-inline-size: 0;
   }
 
+  .manage-admins-table-card .admin-table {
+    min-inline-size: 0 !important;
+  }
+
+  .manage-admins-table-card .admin-row,
+  .manage-admins-table-card .table-row {
+    min-inline-size: 0;
+    max-inline-size: 100%;
+  }
+
   .table-head {
     display: none;
   }
 
   .admin-row {
     display: grid;
-    grid-template-columns: auto minmax(0, 1fr);
-    gap: 0.75rem;
+    grid-template-columns: auto minmax(0, 1fr) !important;
+    gap: 0.75rem !important;
     min-block-size: auto;
+    min-inline-size: 0;
+    max-inline-size: 100%;
     padding: 0.875rem;
     border: 0.0625rem solid var(--border);
     border-radius: 0.75rem;
     background: var(--surface);
     box-shadow: 0 0.125rem 0.375rem rgba(16, 17, 41, 0.04);
+    overflow: hidden;
+  }
+
+  .manage-admins-table-card .admin-row {
+    border-color: #dedbe5;
+    background: #fff;
+    box-shadow: 0 0.125rem 0.5rem rgba(139, 92, 246, 0.06);
+  }
+
+  .manage-admins-table-card .admin-identity {
+    flex-direction: row;
+    align-items: center;
+    gap: 0.625rem;
+  }
+
+  .manage-admins-table-card .admin-row-expanded {
+    border-color: #e3d8fd;
+    border-radius: 0.75rem 0.75rem 0 0;
+    border-block-end: 0;
+    margin-block-start: 0;
+  }
+
+  .manage-admins-table-card .admin-row-expanded + .admin-expanded-panel {
+    margin-block-start: 0;
+    border-radius: 0 0 0.75rem 0.75rem;
+    margin-block-end: 0;
   }
 
   .admin-row > span[data-label],
   .admin-row > b[data-label] {
     grid-column: 1 / -1;
     display: flex;
-    justify-content: space-between;
     align-items: center;
     gap: 0.5rem;
     border-block-start: 0.0625rem solid var(--border);
     padding-block-start: 0.5rem;
+    min-inline-size: 0;
+    max-inline-size: 100%;
+    overflow: hidden;
+    font-size: 0.8125rem;
+    color: var(--ink-strong);
   }
 
   .admin-row > span[data-label]::before,
@@ -1731,6 +1866,38 @@ h1 {
     content: attr(data-label);
     color: var(--ink-muted);
     font-size: 0.6875rem;
+    font-weight: 600;
+    white-space: nowrap;
+    flex: none;
+    min-inline-size: 6.5rem;
+  }
+
+  .admin-row > span[data-label],
+  .admin-row > b[data-label] {
+    justify-content: flex-start;
+  }
+
+  .manage-admins-table-card .admin-row > span[data-label],
+  .manage-admins-table-card .admin-row > b[data-label] {
+    border-block-start-color: #dedbe5;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #212121;
+  }
+
+  .manage-admins-table-card .admin-row > span[data-label]::before,
+  .manage-admins-table-card .admin-row > b[data-label]::before {
+    color: #888;
+    font-size: 0.6875rem;
+    font-weight: 500;
+    min-inline-size: 7rem;
+  }
+
+  .admin-row > b[data-label] .practitioners-link {
+    padding: 0;
+    background: none;
+    text-decoration: none;
+    color: inherit;
     font-weight: 600;
   }
 
@@ -1756,9 +1923,21 @@ h1 {
     border-color: var(--border);
   }
 
+  .manage-admins-table-card .admin-expanded-panel {
+    margin: 0;
+    padding: 0;
+    border-color: #e3d8fd;
+    border-top: 0;
+  }
+
   .admin-expanded-specialties,
   .admin-expanded-metrics {
     grid-template-columns: minmax(0, 1fr);
+  }
+
+  .manage-admins-table-card .admin-expanded-specialties,
+  .manage-admins-table-card .admin-expanded-metrics {
+    grid-template-columns: 1fr 1fr;
   }
 
   .expanded-specialty,
@@ -1766,6 +1945,39 @@ h1 {
     border-inline-end: 0;
     border-block-end: 0.0625rem solid #ede8fb;
     padding: 0.875rem 1rem;
+  }
+
+  .manage-admins-table-card .expanded-specialty,
+  .manage-admins-table-card .expanded-metric {
+    padding: 0.75rem 1rem;
+    border-block-end-color: #e0e0e0;
+    min-block-size: auto;
+  }
+
+  .manage-admins-table-card .expanded-specialty {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.375rem;
+  }
+
+  .manage-admins-table-card .admin-expanded-specialties .expanded-specialty:nth-child(odd),
+  .manage-admins-table-card .admin-expanded-metrics .expanded-metric:nth-child(odd) {
+    border-inline-end: 0.0625rem solid #e0e0e0;
+  }
+
+  .manage-admins-table-card .expanded-specialty-icon {
+    inline-size: 1.5rem;
+    block-size: 1.5rem;
+  }
+
+  .manage-admins-table-card .expanded-specialty-icon img {
+    inline-size: 1.5rem;
+    block-size: 1.5rem;
+  }
+
+  .manage-admins-table-card .expanded-specialty strong,
+  .manage-admins-table-card .expanded-metric strong {
+    font-size: 1.375rem;
   }
 
   .expanded-specialty:last-child,
@@ -1781,7 +1993,7 @@ h1 {
 
   .nav-actions {
     flex-wrap: nowrap;
-    overflow: hidden;
+    overflow: visible;
   }
 
   .nav-actions .secondary-button {
@@ -1809,13 +2021,25 @@ h1 {
   }
 
   .search {
-    order: 5;
-    flex-basis: 100%;
-    min-inline-size: 0;
+    display: none;
   }
 
   .nav-actions {
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
+    gap: 0.5rem;
+    overflow: visible;
+  }
+
+  .navbar .primary-button {
+    font-size: 0;
+    padding-inline: 0.625rem;
+    inline-size: 2.125rem;
+    gap: 0;
+  }
+
+  .navbar .primary-button span[aria-hidden] {
+    font-size: 1.25rem;
+    line-height: 1;
   }
 
   .drawer {
@@ -2072,7 +2296,7 @@ h1 {
 
 .navbar {
   min-block-size: 4.5rem;
-  padding-inline: 1.5rem 1.875rem;
+  padding-inline: clamp(0.75rem, 3vw, 1.875rem);
   background: #fff;
   border-block-end-color: #dedbe5;
   backdrop-filter: none;
@@ -2084,6 +2308,16 @@ h1 {
 
 .brand-logo-text {
   inline-size: 5.875rem;
+}
+
+@media (max-width: 30em) {
+  .brand-logo-mark {
+    inline-size: 3rem;
+  }
+
+  .brand-logo-text {
+    display: none;
+  }
 }
 
 .nav-actions {
@@ -2098,10 +2332,48 @@ h1 {
   border-color: #dedde5;
 }
 
+@media (max-width: 56em) {
+  .search {
+    inline-size: min(100%, 20rem);
+    min-inline-size: 8rem;
+  }
+}
+
+@media (max-width: 30em) {
+  .search {
+    order: 5;
+    flex-basis: 100%;
+    min-inline-size: 0;
+  }
+}
+
 .round-action,
 .navbar .avatar-md {
   inline-size: 2.125rem;
   block-size: 2.125rem;
+}
+
+@media (max-width: 30em) {
+  .navbar {
+    min-block-size: 3.5rem;
+    padding-block: 0.5rem;
+  }
+
+  .sidebar {
+    inset-block: 3.5rem 0;
+    block-size: calc(100svh - 3.5rem);
+  }
+
+  .round-action,
+  .navbar .avatar-md,
+  .navbar .primary-button {
+    inline-size: 2rem;
+    block-size: 2rem;
+  }
+
+  .nav-actions {
+    gap: 0.375rem;
+  }
 }
 
 .navbar .primary-button {
@@ -3021,28 +3293,293 @@ select:focus-visible {
 }
 
 @media (max-width: 44em) {
-  .all-patients-page {
-    padding-inline: 1rem;
+  .all-practitioners-page {
+    padding: 0.5rem 0.75rem 1.5rem;
   }
 
-  .ap-filterbar,
-  .ap-filter-pills,
-  .ap-date-group,
-  .ap-filter-right {
-    align-items: flex-start;
+  .all-practitioners-title {
+    margin-block-end: 1rem;
+    padding-block-end: 0.625rem;
+  }
+
+  .all-practitioners-filters {
     flex-direction: column;
+    align-items: stretch;
+    gap: 0.75rem;
+    padding: 0.75rem 0.875rem;
+    min-block-size: unset;
   }
 
-  .ap-date-control,
+  .all-practitioners-filters .filter-group {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  .all-practitioners-filters .filter-pills {
+    flex-wrap: wrap;
+  }
+
+  .all-practitioners-filters .filter-controls {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.5rem;
+    margin-inline-start: 0;
+  }
+
+  .all-practitioners-filters .date-label {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+  }
+
+  .all-practitioners-filters .date-input-wrap {
+    flex: 1;
+    min-inline-size: 0;
+  }
+
+  .all-practitioners-filters .date-input-wrap input {
+    inline-size: 100%;
+    min-inline-size: 0;
+  }
+
+  .all-practitioners-filters .select-wrap {
+    inline-size: 100%;
+  }
+
+  .all-practitioners-filters .select-wrap select {
+    inline-size: 100%;
+    min-inline-size: 0;
+  }
+
+  .all-practitioners-filters .export-button {
+    inline-size: 100%;
+    justify-content: center;
+  }
+
+  .all-practitioners-card {
+    margin-inline-end: 0;
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+  }
+
+  .all-practitioners-card .pr-table {
+    display: grid;
+    gap: 0.75rem;
+    min-inline-size: 0;
+    padding: 0;
+  }
+
+  .all-practitioners-card .pr-table-head {
+    display: none;
+  }
+
+  .all-practitioners-card .pr-row {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    gap: 0.625rem;
+    min-block-size: auto;
+    padding: 0.875rem;
+    border: 0.0625rem solid #dcdbe0;
+    border-block-end: 0.0625rem solid #dcdbe0;
+    border-radius: 0.75rem;
+    background: #fff;
+    box-shadow: 0 0.125rem 0.5rem rgba(139, 92, 246, 0.06);
+  }
+
+  .all-practitioners-card .admin-identity {
+    flex-direction: row;
+    align-items: center;
+    gap: 0.625rem;
+  }
+
+  .all-practitioners-card .pr-row > span[data-label],
+  .all-practitioners-card .pr-row > b[data-label] {
+    grid-column: 1 / -1;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    border-block-start: 0.0625rem solid #ede8fb;
+    padding-block-start: 0.5rem;
+    font-size: 0.8125rem;
+    color: #212121;
+  }
+
+  .all-practitioners-card .pr-row > span[data-label]::before,
+  .all-practitioners-card .pr-row > b[data-label]::before {
+    content: attr(data-label);
+    color: #888;
+    font-size: 0.6875rem;
+    font-weight: 500;
+    white-space: nowrap;
+    flex: none;
+    min-inline-size: 6.5rem;
+  }
+
+  .all-practitioners-card .pr-row > b[data-label] {
+    font-weight: 700;
+    color: #424242;
+  }
+
+}
+
+/* All Patients table collapses to cards on mobile */
+@media (max-width: 44em) {
+  .all-patients-page {
+    padding: 0.5rem 0.75rem 1.5rem;
+  }
+
+  .ap-heading-row {
+    margin-block-end: 1rem;
+    padding-block-end: 0.625rem;
+  }
+
+  .ap-filterbar {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.625rem;
+    padding: 0.75rem 0.875rem;
+    margin-block-end: 1rem;
+    min-block-size: unset;
+  }
+
+  .ap-filter-pills {
+    flex-direction: row;
+    flex-wrap: wrap;
+    inline-size: 100%;
+    gap: 0.375rem;
+  }
+
+  .ap-date-group {
+    display: grid;
+    grid-template-columns: 3rem 1fr;
+    align-items: center;
+    inline-size: 100%;
+    gap: 0.375rem 0.5rem;
+  }
+
+  .ap-date-group .ap-date-label {
+    inline-size: auto;
+    flex: none;
+    text-align: end;
+  }
+
+  .ap-date-control {
+    inline-size: 100%;
+    min-inline-size: 0;
+  }
+
+  .ap-filter-right {
+    flex-direction: column;
+    align-items: stretch;
+    inline-size: 100%;
+    gap: 0.5rem;
+    margin-inline-start: 0;
+  }
+
   .ap-select-control,
   .ap-export-btn {
     inline-size: 100%;
+    min-inline-size: 0;
+    justify-content: space-between;
   }
 
-  .ap-filter-pills,
-  .ap-date-group,
-  .ap-filter-right {
+  .ap-export-btn {
+    justify-content: center;
+  }
+
+  .ap-table-card {
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+    overflow: visible;
+  }
+
+  .ap-table-scroll {
+    overflow: visible;
+  }
+
+  .ap-table,
+  .ap-table tbody,
+  .ap-table tr {
+    display: block;
     inline-size: 100%;
+    min-inline-size: 0;
+  }
+
+  .ap-table thead {
+    display: none;
+  }
+
+  .ap-table tbody {
+    display: grid;
+    gap: 0.75rem;
+  }
+
+  .ap-table tr {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    gap: 0.5rem;
+    padding: 0.875rem;
+    border: 0.0625rem solid #dedbe5;
+    border-radius: 0.75rem;
+    background: #fff;
+    box-shadow: 0 0.125rem 0.5rem rgba(139, 92, 246, 0.06);
+  }
+
+  .ap-table td {
+    display: flex;
+    align-items: center;
+    block-size: auto;
+    padding: 0;
+    border: 0;
+    white-space: normal;
+    font-size: 0.8125rem;
+  }
+
+  /* Patient cell spans both columns as the card header */
+  .ap-table td:nth-child(1) {
+    grid-column: 1 / -1;
+    inline-size: auto;
+  }
+
+  .ap-patient-cell {
+    flex-direction: row;
+    align-items: center;
+    gap: 0.625rem;
+    padding-inline-start: 0;
+  }
+
+  /* All other cells get a label and span full width */
+  .ap-table td:nth-child(n+2) {
+    grid-column: 1 / -1;
+    justify-content: space-between;
+    border-block-start: 0.0625rem solid #ede8fb;
+    padding-block-start: 0.4375rem;
+    color: #212121;
+    font-weight: 600;
+    inline-size: auto;
+  }
+
+  .ap-table td:nth-child(2)::before  { content: 'Mobile'; }
+  .ap-table td:nth-child(3)::before  { content: 'Referred By'; }
+  .ap-table td:nth-child(4)::before  { content: 'Admin'; }
+  .ap-table td:nth-child(5)::before  { content: 'City'; }
+  .ap-table td:nth-child(6)::before  { content: 'Tests Taken'; }
+  .ap-table td:nth-child(7)::before  { content: 'Date Joined'; }
+  .ap-table td:nth-child(8)::before  { content: 'Status'; }
+
+  .ap-table td:nth-child(n+2)::before {
+    color: #888;
+    font-size: 0.6875rem;
+    font-weight: 500;
+    flex: none;
   }
 }
 
@@ -3372,14 +3909,48 @@ select:focus-visible {
     padding-inline: 1rem;
   }
 
-  .audit-filters {
-    padding: 0.875rem;
+  .audit-heading {
+    margin-inline-end: 0;
   }
 
-  .audit-date-label,
-  .audit-date-control,
+  .audit-filters {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.625rem;
+    padding: 0.875rem;
+    margin-inline-end: 0;
+    min-block-size: unset;
+  }
+
+  .audit-filter-tabs {
+    flex-wrap: wrap;
+  }
+
+  .audit-date-label {
+    display: grid;
+    grid-template-columns: 3rem 1fr;
+    align-items: center;
+    inline-size: 100%;
+    white-space: normal;
+  }
+
+  .audit-date-label > span:first-child {
+    font-size: 1rem;
+  }
+
+  .audit-date-control {
+    inline-size: 100%;
+    min-inline-size: 0;
+  }
+
   .audit-admin-select {
     inline-size: 100%;
+    min-inline-size: 0;
+  }
+
+  .audit-filter-chevron {
+    align-self: center;
+    margin-inline-start: auto;
   }
 
   .audit-table {
@@ -3402,13 +3973,19 @@ select:focus-visible {
   .audit-row > span {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     gap: 1rem;
+    white-space: normal;
+    overflow: visible;
+    text-overflow: unset;
   }
 
   .audit-row > span::before {
     content: attr(data-label);
     color: #616161;
     font-weight: 700;
+    flex: none;
+    min-inline-size: 6rem;
   }
 }
 
@@ -4229,28 +4806,65 @@ select:focus-visible {
   }
 
   .geo-page {
-    padding-inline: 1rem;
+    padding: 0.5rem 0.75rem 1.5rem;
+  }
+
+  .geo-heading {
+    margin-block-end: 0.875rem;
+    padding-block-end: 0.625rem;
   }
 
   .geo-filters {
-    padding: 0.875rem;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.625rem;
+    padding: 0.75rem 0.875rem;
+    margin-block-end: 1rem;
+    margin-inline-end: 0;
+    min-block-size: unset;
   }
 
-  .geo-filter-tabs,
-  .geo-filter-controls,
-  .geo-date-label,
-  .geo-date-control,
-  .geo-select {
+  .geo-filter-tabs {
+    flex-wrap: wrap;
     inline-size: 100%;
   }
 
+  .geo-filter-controls {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.5rem;
+    margin-inline-start: 0;
+    inline-size: 100%;
+  }
+
+  .geo-date-label {
+    justify-content: space-between;
+    inline-size: 100%;
+  }
+
+  .geo-date-control,
+  .geo-select {
+    flex: 1;
+    inline-size: 100%;
+    min-inline-size: 0;
+  }
+
   .geo-filter-tab {
-    flex: 1 1 8rem;
+    flex: 1 1 6rem;
+  }
+
+  .geo-main-grid {
+    gap: 1rem;
+    margin-block-end: 0.75rem;
   }
 
   .geo-map-card {
     min-block-size: auto;
-    padding-block: 1.5rem 11rem;
+    padding-block: 1rem 1rem;
+  }
+
+  .india-map-reference {
+    inline-size: min(90%, 22rem);
   }
 
   .india-map-wrap {
@@ -6052,13 +6666,36 @@ select:focus-visible {
     padding-inline: 1rem;
   }
 
-  .dash-metrics,
+  .dash-metrics {
+    grid-template-columns: 1fr 1fr;
+    row-gap: 0;
+  }
+
   .dash-lower-grid,
   .city-stats {
     grid-template-columns: 1fr;
   }
 
-  .dash-metric,
+  .dash-metric {
+    padding: 1rem 0.75rem;
+    text-align: center;
+    border-block-end: 0.0625rem solid #dedbe5;
+    border-inline-end: 0.0625rem solid #dedbe5;
+  }
+
+  .dash-metric:nth-child(even) {
+    border-inline-end: 0;
+  }
+
+  .dash-metric-label {
+    justify-content: center;
+  }
+
+  .dash-change {
+    margin-inline-start: 0;
+    display: block;
+  }
+
   .city-stat {
     padding-inline: 0;
   }
@@ -6566,24 +7203,125 @@ select:focus-visible {
 
 @media (max-width: 44em) {
   .rnp-page {
-    padding-inline: 1rem;
+    padding-inline: 0.75rem;
   }
 
+  .rnp-heading {
+    font-size: 1.375rem;
+  }
+
+  .rnp-filterbar {
+    padding: 0.875rem;
+    gap: 0.75rem;
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .rnp-filterbar-label {
+    font-size: 0.9375rem;
+  }
+
+  .rnp-filter-pills {
+    gap: 0.375rem;
+  }
+
+  .rnp-date-group {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    align-items: center;
+    row-gap: 0.5rem;
+    column-gap: 0.5rem;
+  }
+
+  .rnp-date-label {
+    white-space: nowrap;
+    font-size: 0.875rem;
+  }
+
+  .rnp-date-control {
+    inline-size: 100%;
+    min-inline-size: 0;
+  }
+
+  .rnp-filter-right {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    gap: 0.5rem;
+    margin-inline-start: 0;
+  }
+
+  .rnp-select-wrap {
+    inline-size: 100%;
+    min-inline-size: 0;
+  }
+
+  .rnp-export-btn {
+    white-space: nowrap;
+  }
+
+  .rnp-metrics {
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    border: 0.0625rem solid #dedbe5;
+    border-radius: 0.75rem;
+    overflow: hidden;
+  }
+
+  .rnp-metric-card {
+    padding: 1rem 0.875rem;
+    border-block-end: 0.0625rem solid #dedbe5;
+    border-inline-end: 0.0625rem solid #dedbe5;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .rnp-metric-header {
+    justify-content: center;
+  }
+
+  .rnp-metric-card:nth-child(even) {
+    border-inline-end: 0;
+  }
+
+  .rnp-metric-card:nth-last-child(-n+1),
+  .rnp-metric-card:nth-last-child(-n+2):nth-child(odd) {
+    border-block-end: 0;
+  }
+
+  .rnp-metric-value {
+    font-size: clamp(1.5rem, 5vw, 1.875rem);
+  }
+
+  .rnp-charts-row {
+    grid-template-columns: 1fr;
+  }
+
+  .rnp-panel {
+    padding: 1rem;
+  }
+}
+
+@media (max-width: 22em) {
   .rnp-metrics {
     grid-template-columns: 1fr;
   }
 
   .rnp-metric-card {
-    padding-inline: 0;
+    padding: 0.875rem 1rem;
+    border-inline-end: 0;
+    align-items: flex-start;
+    text-align: left;
   }
-}
 
-@media (max-width: 34em) {
-  .rnp-date-group,
-  .rnp-date-control,
-  .rnp-select-wrap,
-  .rnp-export-btn {
-    inline-size: 100%;
+  .rnp-metric-header {
+    justify-content: flex-start;
+  }
+
+  .rnp-metric-card:last-child {
+    border-block-end: 0;
   }
 }
 
