@@ -1,7 +1,7 @@
 import { Avatar } from '../ui/Avatar'
 import { Logo } from './Logo'
 
-export function Navbar({ onMenuToggle }) {
+export function Navbar({ onMenuToggle, onOnboardAdmin }) {
   return (
     <header className="navbar">
       <div className="navbar-left">
@@ -27,7 +27,7 @@ export function Navbar({ onMenuToggle }) {
           </svg>
           <span className="notif-dot"></span>
         </button>
-        <button className="primary-button" type="button">
+        <button className="primary-button" type="button" onClick={onOnboardAdmin}>
           <span aria-hidden="true">+</span>
           Onboard Admin
         </button>

@@ -17,6 +17,13 @@ export function Icon({ name, size = 'md' }) {
           <path d="M15.8 14.4c2.2.2 3.7 1.7 4.4 4.6" />
         </>
       )}
+      {name === 'user-list' && (
+        <>
+          <circle cx="8" cy="7.5" r="3" />
+          <path d="M3.4 18.5c.7-3.1 2.2-4.6 4.6-4.6s3.9 1.5 4.6 4.6" />
+          <path d="M15 8h5M15 12h4M15 16h5" />
+        </>
+      )}
       {name === 'target' && (
         <>
           <circle cx="12" cy="12" r="8" />
@@ -46,6 +53,12 @@ export function Icon({ name, size = 'md' }) {
           <path d="M12 12 18 8" />
         </>
       )}
+      {name === 'globe' && (
+        <>
+          <circle cx="12" cy="12" r="9" />
+          <path d="M3.5 12h17M12 3c2.2 2.3 3.4 5.3 3.4 9s-1.2 6.7-3.4 9M12 3c-2.2 2.3-3.4 5.3-3.4 9s1.2 6.7 3.4 9" />
+        </>
+      )}
       {name === 'chart' && (
         <>
           <rect x="4" y="11" width="3.5" height="7" rx="1" />
@@ -65,6 +78,14 @@ export function Icon({ name, size = 'md' }) {
         <>
           <circle cx="12" cy="12" r="3" />
           <path d="M12 3.5v2.2M12 18.3v2.2M4.6 7.7l1.9 1.1M17.5 15.2l1.9 1.1M4.6 16.3l1.9-1.1M17.5 8.8l1.9-1.1" />
+        </>
+      )}
+      {name === 'commission' && (
+        <>
+          <circle cx="12" cy="12" r="3.8" />
+          <path d="M12 9.8v4.4M9.8 12h4.4" />
+          <path d="M4.4 9a8.4 8.4 0 0 1 2.3-3.3l-.2-2.2 2.3.7A8.4 8.4 0 0 1 17 5.4" />
+          <path d="M19.6 15a8.4 8.4 0 0 1-2.3 3.3l.2 2.2-2.3-.7A8.4 8.4 0 0 1 7 18.6" />
         </>
       )}
       {name === 'file' && (

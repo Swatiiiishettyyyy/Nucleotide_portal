@@ -50,13 +50,84 @@ function AllPractitionersView() {
   const [activePill, setActivePill] = useState('all')
   const [selectedPractitioner, setSelectedPractitioner] = useState(null)
 
-  const allPractitioners = Object.values(practitionersByAdmin).flat()
+  const allPractitioners = [
+    {
+      id: 'all-1',
+      initials: 'CK',
+      name: 'Karthik Subramaniam',
+      email: 'karthik@nucleotide.health',
+      role: 'Doctor',
+      admin: 'Karthik',
+      region: 'Bengaluru',
+      patients: '124',
+      bloodTests: '64',
+      geneticTests: '34',
+      commission: '₹42,800',
+      status: 'Active',
+    },
+    {
+      id: 'all-2',
+      initials: 'CK',
+      name: 'Meera Joshi',
+      email: 'karthik@nucleotide.health',
+      role: 'Nutritionist',
+      admin: 'Priya',
+      region: 'Mumbai',
+      patients: '86',
+      bloodTests: '44',
+      geneticTests: '12',
+      commission: '₹24,400',
+      status: 'Active',
+    },
+    {
+      id: 'all-3',
+      initials: 'CK',
+      name: 'Karthik Subramaniam',
+      email: 'karthik@nucleotide.health',
+      role: 'Doctor',
+      admin: 'Karthik',
+      region: 'Bengaluru',
+      patients: '124',
+      bloodTests: '64',
+      geneticTests: '34',
+      commission: '₹42,800',
+      status: 'Active',
+    },
+    {
+      id: 'all-4',
+      initials: 'CK',
+      name: 'Karthik Subramaniam',
+      email: 'karthik@nucleotide.health',
+      role: 'Doctor',
+      admin: 'Karthik',
+      region: 'Bengaluru',
+      patients: '124',
+      bloodTests: '64',
+      geneticTests: '34',
+      commission: '₹42,800',
+      status: 'Pending Verify',
+    },
+    {
+      id: 'all-5',
+      initials: 'CK',
+      name: 'Karthik Subramaniam',
+      email: 'karthik@nucleotide.health',
+      role: 'Doctor',
+      admin: 'Karthik',
+      region: 'Bengaluru',
+      patients: '124',
+      bloodTests: '64',
+      geneticTests: '34',
+      commission: '₹42,800',
+      status: 'Pending Verify',
+    },
+  ]
 
   const filterPills = [
-    { key: 'all',     label: `All time (${allPractitioners.length})` },
-    { key: 'active',  label: `Active (${allPractitioners.filter(p => p.status === 'Active').length})` },
-    { key: 'pending', label: `Pending Verify (${allPractitioners.filter(p => p.status === 'Pending Verify').length})` },
-    { key: 'suspended', label: `Suspended (${allPractitioners.filter(p => p.status === 'Suspended').length})` },
+    { key: 'all', label: 'All time (247)' },
+    { key: 'active', label: 'Active (4)' },
+    { key: 'pending', label: 'Pending Verify (2)' },
+    { key: 'suspended', label: 'Suspended (0)' },
   ]
 
   const filtered = activePill === 'all'
@@ -71,17 +142,6 @@ function AllPractitionersView() {
         <div className="page-title all-practitioners-title">
           <div>
             <h1>All Practitioners</h1>
-            <p className="page-subtitle">All practitioners across every region and admin.</p>
-          </div>
-          <div className="list-actions">
-            <button className="secondary-button" type="button">
-              <img src={fileExportIcon} alt="" aria-hidden="true" className="btn-icon" />
-              Export CSV
-            </button>
-            <button className="primary-button" type="button">
-              <img src={frameIcon} alt="" aria-hidden="true" className="btn-icon btn-icon-white" />
-              Add Practitioner
-            </button>
           </div>
         </div>
 
@@ -136,15 +196,13 @@ function AllPractitionersView() {
           <div className="pr-table all-pr-table" role="table">
             <div className="pr-table-row all-pr-row pr-table-head" role="row">
               <span>Practitioner</span>
-              <span>Specialty</span>
-              <span>Mobile</span>
+              <span>Role</span>
+              <span>Admin</span>
               <span>Region</span>
               <span>Patients</span>
               <span>Blood Tests</span>
               <span>Genetic Tests</span>
-              <span>Status</span>
-              <span>KYC</span>
-              <span>Actions</span>
+              <span>Commission</span>
             </div>
 
             {filtered.length === 0 ? (
@@ -152,44 +210,20 @@ function AllPractitionersView() {
             ) : filtered.map((p) => (
               <article className="pr-table-row all-pr-row pr-row" role="row" key={p.id}>
                 <div className="admin-identity">
-                  <Avatar initials={p.initials} tone={toneMap[specialtyColors[p.specialty]] ?? 'purple'} />
+                  <Avatar initials={p.initials} tone="purple" />
                   <div>
                     <strong>{p.name}</strong>
                     <span>{p.email}</span>
                   </div>
                 </div>
 
-                <span data-label="Specialty">
-                  <span className={`specialty-chip specialty-${specialtyColors[p.specialty] ?? 'gray'}`}>
-                    {p.specialty}
-                  </span>
-                </span>
-
-                <span data-label="Mobile">{p.mobile}</span>
-                <span data-label="Region">{p.clinic.split(',').pop().trim()}</span>
+                <span data-label="Role">{p.role}</span>
+                <span data-label="Admin">{p.admin}</span>
+                <span data-label="Region">{p.region}</span>
                 <b data-label="Patients">{p.patients}</b>
                 <b data-label="Blood Tests">{p.bloodTests}</b>
                 <b data-label="Genetic Tests">{p.geneticTests}</b>
-                <span data-label="Status"><StatusBadge status={p.status} /></span>
-
-                <div className="kyc-cell" data-label="KYC">
-                  {p.kyc.map((k) => <KycBadge key={k} label={k} />)}
-                </div>
-
-                <div className="row-actions">
-                  <button type="button" className="action-detail" onClick={() => setSelectedPractitioner(p)}>
-                    <img src={iconSa5} alt="" aria-hidden="true" className="action-icon" />
-                    Detail
-                  </button>
-                  <button className="action-approve" type="button">
-                    <img src={iconSa6} alt="" aria-hidden="true" className="action-icon action-icon-white" />
-                    Approve
-                  </button>
-                  <button className="action-suspend" type="button">
-                    <img src={iconSa7} alt="" aria-hidden="true" className="action-icon action-icon-white" />
-                    Suspend
-                  </button>
-                </div>
+                <b data-label="Commission">{p.commission}</b>
               </article>
             ))}
           </div>

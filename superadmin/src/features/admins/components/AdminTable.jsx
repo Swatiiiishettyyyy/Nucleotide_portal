@@ -2,9 +2,9 @@ import { Fragment, useState } from 'react'
 import { Avatar } from '../../../components/ui/Avatar'
 import { admins } from '../data/admins'
 import doctorIcon from '../../../assets/Expanded_admin/Dashboard icons-1.svg'
-import nutritionIcon from '../../../assets/Expanded_admin/Dashboard icons.svg'
+import nutritionIcon from '../../../assets/Expanded_admin/nutrition-heart.svg'
 import lifestyleIcon from '../../../assets/Expanded_admin/test-tube-02.svg'
-import geneticIcon from '../../../assets/Expanded_admin/Dashboard icons-2.svg'
+import geneticIcon from '../../../assets/Expanded_admin/genetic-counselors.svg'
 
 const expandedStats = [
   { value: '18', label: 'Doctors', color: 'purple', icon: doctorIcon },
@@ -93,7 +93,7 @@ export function AdminTable({ onPractitionersClick }) {
 function AdminExpandedStats({ admin }) {
   const performanceStats = [
     { value: admin.patients, label: 'Total Patients' },
-    { value: admin.bloodTests.replace('3,741', '3,721'), label: 'Blood Tests' },
+    { value: '3,721', label: 'Blood Tests' },
     { value: admin.geneticTests, label: 'Genetic Tests' },
     { value: '54', label: 'Net Profit' },
   ]
@@ -103,8 +103,10 @@ function AdminExpandedStats({ admin }) {
       <div className="admin-expanded-specialties">
         {expandedStats.map((stat) => (
           <article className={`expanded-specialty expanded-specialty-${stat.color}`} key={stat.label}>
-            <img src={stat.icon} alt="" aria-hidden="true" />
-            <div>
+            <div className="expanded-specialty-icon">
+              <img src={stat.icon} alt="" aria-hidden="true" />
+            </div>
+            <div className="expanded-specialty-stat">
               <strong>{stat.value}</strong>
               <span>{stat.label}</span>
             </div>

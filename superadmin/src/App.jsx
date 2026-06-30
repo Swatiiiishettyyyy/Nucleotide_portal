@@ -1,7 +1,6 @@
 import { useState } from 'react'
 import './App.css'
-import { Navbar } from './components/layout/Navbar'
-import { Sidebar } from './components/layout/Sidebar'
+import { SuperAdminLayout } from './components/layout/SuperAdminLayout'
 import { ManageAdminsPage } from './pages/ManageAdminsPage'
 import { PractitionersPage } from './pages/PractitionersPage'
 import { AllPatientsPage } from './pages/AllPatientsPage'
@@ -9,18 +8,20 @@ import { PlatformSettingsPage } from './pages/PlatformSettingsPage'
 import { AuditLogPage } from './pages/AuditLogPage'
 import { GeoIntelligencePage } from './pages/GeoIntelligencePage'
 import { CommissionConfigPage } from './pages/CommissionConfigPage'
+import { OnboardAdminPage } from './pages/OnboardAdminPage'
+import { DashboardPage } from './pages/DashboardPage'
+import { RevenueAndProfitsPage } from './pages/RevenueAndProfitsPage'
+import { TestAnalyticsPage }    from './pages/TestAnalyticsPage'
 
 function App() {
   const [selectedAdmin, setSelectedAdmin]           = useState(null)
-  const [sidebarOpen, setSidebarOpen]               = useState(false)
   const [practitionersAdmin, setPractitionersAdmin] = useState(null)
-  const [activePage, setActivePage]                 = useState('Geo Intelligence')
+  const [activePage, setActivePage]                 = useState('Dashboard')
 
   function handleNavigate(label) {
     setActivePage(label)
     setSelectedAdmin(null)
     setPractitionersAdmin(null)
-    setSidebarOpen(false)
   }
 
   function handlePractitionersClick(admin) {
@@ -56,6 +57,18 @@ function App() {
     if (activePage === 'Commission Config') {
       return <CommissionConfigPage />
     }
+    if (activePage === 'Onboard Admin') {
+      return <OnboardAdminPage />
+    }
+    if (activePage === 'Dashboard') {
+      return <DashboardPage />
+    }
+    if (activePage === 'Revenue & Profits') {
+      return <RevenueAndProfitsPage />
+    }
+    if (activePage === 'Test Analytics') {
+      return <TestAnalyticsPage />
+    }
     return (
       <ManageAdminsPage
         selectedAdmin={selectedAdmin}
@@ -71,16 +84,13 @@ function App() {
     : activePage
 
   return (
-    <div className={`app-shell ${sidebarOpen ? 'sidebar-visible' : ''}`}>
-      <Navbar onMenuToggle={() => setSidebarOpen((v) => !v)} />
-      <div className="dashboard">
-        <Sidebar activePage={currentNavLabel} onNavigate={handleNavigate} />
-        {sidebarOpen && (
-          <div className="sidebar-backdrop" onClick={() => setSidebarOpen(false)} aria-hidden="true" />
-        )}
-        {renderPage()}
-      </div>
-    </div>
+    <SuperAdminLayout
+      activePage={currentNavLabel}
+      onNavigate={handleNavigate}
+      onOnboardAdmin={() => handleNavigate('Onboard Admin')}
+    >
+      {renderPage()}
+    </SuperAdminLayout>
   )
 }
 

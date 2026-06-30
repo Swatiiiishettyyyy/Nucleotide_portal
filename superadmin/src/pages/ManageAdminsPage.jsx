@@ -2,7 +2,6 @@ import { AdminDetailDrawer } from '../features/admins/components/AdminDetailDraw
 import { AdminFilters } from '../features/admins/components/AdminFilters'
 import { AdminTable } from '../features/admins/components/AdminTable'
 import fileExportIcon from '../assets/Manage_admin/file-export.svg'
-import frameIcon from '../assets/Manage_admin/Frame.svg'
 
 export function ManageAdminsPage({ selectedAdmin, onAdminSelect, onDrawerClose, onPractitionersClick }) {
   return (
@@ -23,7 +22,7 @@ export function ManageAdminsPage({ selectedAdmin, onAdminSelect, onDrawerClose, 
               Export CSV
             </button>
             <button className="primary-button" type="button">
-              <img src={frameIcon} alt="" aria-hidden="true" className="btn-icon btn-icon-white" />
+              <span aria-hidden="true">+</span>
               Onboard Admin
             </button>
           </div>

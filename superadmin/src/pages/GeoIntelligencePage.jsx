@@ -1,15 +1,8 @@
 import calendarIcon from '../assets/Geo_intelligence/Calendar.svg'
 import downIcon from '../assets/Geo_intelligence/Down.svg'
+import indiaMapReference from '../assets/Geo_intelligence/india-map-reference.png'
 
 const filterTabs = ['Practitioners', 'Patients', 'Revenue', 'Tests']
-
-const cityLegend = [
-  { city: 'Bengaluru', count: 52, color: '#8b5cf6', x: '48%', y: '67%' },
-  { city: 'Mumbai', count: 44, color: '#2877f0', x: '33%', y: '51%' },
-  { city: 'Delhi NCR', count: 38, color: '#ffb000', x: '50%', y: '30%' },
-  { city: 'Hyderabad', count: 31, color: '#ef4444', x: '52%', y: '67%' },
-  { city: 'Chennai', count: 28, color: '#67c7ef', x: '52%', y: '75%' },
-]
 
 const platformRows = [
   ['1', 'Bengaluru', '52', '1,840', '4,210'],
@@ -83,33 +76,11 @@ export function GeoIntelligencePage() {
         <div className="geo-section geo-map-section">
           <h2>INDIA - PRACTITIONER DISTRIBUTION</h2>
           <div className="geo-map-card">
-            <div className="india-map-wrap" aria-label="India practitioner distribution map">
-              <svg className="india-map" viewBox="0 0 430 520" role="img" aria-labelledby="india-map-title">
-                <title id="india-map-title">India map with practitioner city markers</title>
-                <path
-                  className="india-map-shape"
-                  d="M161 34l20 6 10-4 15 9 24 7 16 22 24-2 20-10 17 5 14 20-15 10 5 15-20 9 8 16-15 24 20 13 19-8 22-2 31-19 28 0 14 23-19 7 3 16-24 12 1 25-23-4-18 11-30-6-26 12-18 27-26 7-20 29-1 30-14 38-1 41-12 38-18 35-18-14-14-34-12-31-15-18-10-32-21-21 4-24-15-22-19-18 18-18 26 4 12-19 5-27 22-21 1-20 18-22-5-34 10-15-12-23 15-13-4-13z"
-                />
-              </svg>
-              {cityLegend.map((city) => (
-                <span
-                  key={city.city}
-                  className="geo-map-marker"
-                  style={{ '--marker-color': city.color, '--marker-x': city.x, '--marker-y': city.y }}
-                  title={`${city.city}: ${city.count}`}
-                />
-              ))}
-            </div>
-
-            <div className="city-legend" aria-label="City legend">
-              <strong>City Legend</strong>
-              {cityLegend.map((city) => (
-                <span key={city.city}>
-                  <i style={{ '--legend-color': city.color }} aria-hidden="true" />
-                  {city.city} ({city.count})
-                </span>
-              ))}
-            </div>
+            <img
+              className="india-map-reference"
+              src={indiaMapReference}
+              alt="India practitioner distribution map with city legend"
+            />
           </div>
         </div>
 
